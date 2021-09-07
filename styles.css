@@ -7,6 +7,13 @@
   font-family: "Open Sans", sans-serif;
 }
 
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
 body {
   background: linear-gradient(
     123.82deg,
@@ -15,7 +22,6 @@ body {
   );
   color: #fff;
   text-align: center;
-  overflow: hidden;
 }
 
 h1 {
@@ -34,7 +40,7 @@ h2 {
   height: 100vh;
   margin-top: 30px;
   transform: translateX(0);
-  /* overflow: hidden; */
+  overflow: hidden;
   transition: transform 0.5s ease-in-out;
   cursor: grab;
 }
@@ -43,6 +49,7 @@ h2 {
   max-height: 100vh;
   width: 100vw;
   user-select: none;
+  overflow: hidden;
 }
 
 .grabbing {
