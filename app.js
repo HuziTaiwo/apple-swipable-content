@@ -26,12 +26,23 @@ slides.forEach((slide, i) => {
     slide.addEventListener('mouseup', touchEnd);
     slide.addEventListener('mouseleave', touchEnd);
     slide.addEventListener('mousemove', touchMove);
-
 });
+
+// disabled context menu
+oncontextmenu = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+}
 
 function touchStart(i) {
     return function(e) {
+        currentIndex = i;
+        startPosition = getPositionX(e);
+        console.log(startPosition);
         isDragging = true;
+
+        animationID = requestAnimationFrame(animation)
     }
 }
 
@@ -39,8 +50,24 @@ function touchEnd() {
     isDragging = false;
 }
 
-function touchMove() {
+function touchMove(e) {
     if(isDragging) {
-        console.log('move');
+        const currentPosition = getPositionX(e);
+        currentTranslate = prevTranslate + currentPosition - startPosition;
     }
+}
+
+function getPositionX(e) {
+    return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+}
+
+function animation() {
+    setSliderPos()
+    if(isDragging) {
+        requestAnimationFrame(animation)
+    }
+}
+
+function setSliderPos() {
+    slider.style.transform = `translateX(${currentTranslate}px)`
 }
