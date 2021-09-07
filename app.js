@@ -39,7 +39,6 @@ function touchStart(i) {
     return function(e) {
         currentIndex = i;
         startPosition = getPositionX(e);
-        console.log(startPosition);
         isDragging = true;
 
         animationID = requestAnimationFrame(animation);
